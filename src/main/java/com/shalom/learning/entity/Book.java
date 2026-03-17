@@ -3,13 +3,16 @@ package com.shalom.learning.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "user") // Garante que aponte exatamente para a tabela 'Usuario'
-@Getter @Setter
+@Table(name = "book")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder // Útil para criar objetos de forma fluida
-public class Usuario
+@Builder
+public class Book
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,8 +21,10 @@ public class Usuario
     @Column(nullable = false, length = 100)
     private String nome;
 
-    @Column(unique = true, nullable = false)
-    private String email;
+    @Column(length = 255)
+    private String sinopse;
 
-    private String senha;
+    @ManyToOne
+    @JoinColumn(name = "gender_id", nullable = false)
+    private Gender gender;
 }
