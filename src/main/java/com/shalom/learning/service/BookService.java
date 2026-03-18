@@ -41,4 +41,6 @@ public class BookService
         return bookRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Livro não encontrado com o ID: " + id));
     }
+
+    public Long totalLivrosCadastrados() { return bookRepository.count(); }
 }
