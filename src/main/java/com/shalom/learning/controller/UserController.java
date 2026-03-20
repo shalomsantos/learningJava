@@ -1,6 +1,6 @@
 package com.shalom.learning.controller;
 import com.shalom.learning.entity.User;
-import com.shalom.learning.service.UsuarioService;
+import com.shalom.learning.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +13,7 @@ import java.util.List;
 public class UserController
 {
     @Autowired
-    private UsuarioService userService;
+    private UserService userService;
 
     @GetMapping
     public List<User> index() { return userService.all(); }
