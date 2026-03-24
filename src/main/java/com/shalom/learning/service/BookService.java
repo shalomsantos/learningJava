@@ -43,4 +43,23 @@ public class BookService
     }
 
     public Long totalLivrosCadastrados() { return bookRepository.count(); }
+
+    public Book update(Long id, BookDto body) 
+    {
+        Book existingBook = bookRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
+        if (body.getNome() != null && !body.getNome().isBlank()) {
+            existingBook.setNome(body.getNome());
+        }
+        if (body.getSinopse() != null) {
+            existingBook.setSinopse(body.getSinopse());
+        }
+        if (body.getGenderId() != null) {
+            Gender gender = genderRepository.findById(body.getGenderId())
+                .orElseThrow(() -> new RuntimeException("Gênero inválido"));
+            existingBook.setGender(gender);
+        }
+
+        return bookRepository.save(existingBook);
+    }
 }

@@ -3,8 +3,6 @@ package com.shalom.learning.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "book")
 @Getter

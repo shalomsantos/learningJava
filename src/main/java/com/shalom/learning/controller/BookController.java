@@ -21,15 +21,17 @@ public class BookController
     public List<Book> index() { return bookService.all(); }
 
     @PostMapping
-    public Book store(@Valid @RequestBody BookDto body)
-    {
-        return bookService.create(body);
-    }
+    public Book store(@Valid @RequestBody BookDto body) { return bookService.create(body); }
 
     @GetMapping("/{id}")
     public ResponseEntity<Book> show(@PathVariable Long id)
     {
         Book book = bookService.findById(id);
         return ResponseEntity.ok(book);
+    }
+
+    @PutMapping("/{id}")
+    public Book update(@PathVariable Long id, @Valid @RequestBody BookDto body) {
+        return bookService.update(id, body);
     }
 }

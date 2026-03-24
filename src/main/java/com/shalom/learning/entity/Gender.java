@@ -1,8 +1,6 @@
 package com.shalom.learning.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Gender
 {
     @Id
@@ -28,8 +25,7 @@ public class Gender
 
     @Column(length = 255)
     private String descricao;
-
-    // livro tem genero mas se eu quiser os livros do genero x é possivel atraves do mappeBy
+    
     @OneToMany(mappedBy = "gender")
     @JsonIgnore
     private List<Book> books = new ArrayList<>(); // contorna migração nula
